@@ -490,6 +490,3 @@ def get_recent_analysis():
     ]
     
     return jsonify({'recent_analyses': recent_analyses})
-
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
