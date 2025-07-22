@@ -1,0 +1,343 @@
+# PokerPro Analytics
+
+A comprehensive web-based poker analysis platform that provides real-time mathematical analysis, strategic insights, and bankroll management tools for poker players of all skill levels.
+
+## Overview
+
+PokerPro Analytics transforms poker decision-making from intuition-based to mathematically-driven analysis. It calculates the precise probability of winning any poker hand, determines optimal betting strategies, and provides professional-level insights that help players make better decisions at the table.
+
+## Features
+
+### Hand Equity Analysis
+- Calculate exact winning probabilities for any two-card starting hand
+- Support for 1-9 opponents using Monte Carlo simulations
+- Position-aware recommendations (UTG, MP, CO, BTN, SB, BB)
+- Real-time equity calculations with confidence intervals
+- GTO frequency recommendations for optimal play
+
+### Bankroll Management
+- Professional risk assessment using Kelly Criterion principles
+- Risk of ruin calculations with realistic percentages
+- Buy-in ratio analysis and recommendations
+- Conservative, moderate, and aggressive bankroll strategies
+- Growth projections based on win rates and variance
+
+### Tournament Strategy Analysis
+- M-ratio calculations for tournament play
+- ICM (Independent Chip Model) pressure analysis
+- Stage-specific strategy recommendations
+- Blind level progression tracking
+- Push-fold strategy optimization
+
+### Game Theory Optimal (GTO) Solver
+- Optimal betting frequencies for any scenario
+- Preflop and postflop strategy recommendations
+- Stack-to-pot ratio considerations
+- Exploitability analysis
+- Nash equilibrium calculations
+
+### Session Tracking
+- Comprehensive session logging
+- Profit/loss tracking with hourly rates
+- Performance analytics and trend analysis
+- Game type categorization
+- Historical data visualization
+
+## Technology Stack
+
+### Backend
+- **Python Flask** - Web framework
+- **NumPy** - Mathematical calculations
+- **Flask-CORS** - Cross-origin resource sharing
+- **Advanced Monte Carlo** - Equity simulations
+- **Professional Hand Evaluator** - Poker hand rankings
+
+### Frontend
+- **Vanilla JavaScript** - Core functionality
+- **Chart.js** - Data visualization
+- **CSS3** - Modern responsive design
+- **HTML5** - Semantic markup
+- **Progressive Web App** features
+
+## Installation
+
+### Prerequisites
+- Python 3.7 or higher
+- Modern web browser (Chrome, Firefox, Safari, Edge)
+
+### Quick Start
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/yourusername/pokerpro-analytics.git
+cd pokerpro-analytics
+```
+
+2. **Install dependencies**
+```bash
+pip install flask flask-cors numpy
+```
+
+3. **Run the application**
+```bash
+python app.py
+```
+
+4. **Open in browser**
+Navigate to `http://localhost:5000`
+
+### Project Structure
+```
+pokerpro-analytics/
+├── app.py                    # Flask backend server
+├── static/
+│   ├── css/
+│   │   └── style.css        # Complete styling with orange/blue theme
+│   └── js/
+│       └── main.js          # Frontend functionality and API calls
+├── templates/
+│   └── index.html           # Single-page application interface
+└── README.md               # This file
+```
+
+## Usage Guide
+
+### Analyzing Poker Hands
+
+1. **Navigate to Hand Analyzer**
+2. **Enter hole cards** (format: As, Kh, Qd, etc.)
+3. **Select position** from dropdown
+4. **Set opponent count** (1-9 players)
+5. **Click Analyze Hand** for results
+
+**Example Input:**
+- Hole Cards: `As` `Kh`
+- Position: `Button`
+- Opponents: `3`
+
+**Sample Output:**
+- Equity: 74.2%
+- Recommendation: Raise
+- Hand Category: Premium
+- GTO Frequencies: Fold 5%, Call 15%, Raise 80%
+
+### Bankroll Analysis
+
+1. **Enter total bankroll** amount
+2. **Input intended buy-in** amount
+3. **Select variance level** (cash games vs tournaments)
+4. **Review risk assessment** and recommendations
+
+**Risk Levels:**
+- **Low Risk**: Buy-in ratio under 1%
+- **Medium Risk**: Buy-in ratio 1-2%
+- **High Risk**: Buy-in ratio over 2%
+
+### Tournament Strategy
+
+1. **Input current stack size**
+2. **Enter blind level**
+3. **Specify players remaining**
+4. **Receive strategy recommendations**
+
+**M-Ratio Guidelines:**
+- **Above 20**: Early stage play
+- **10-20**: Middle stage aggression
+- **5-10**: Late stage push-fold
+- **Below 5**: Critical desperation mode
+
+### GTO Strategy Analysis
+
+1. **Select scenario type** (preflop/postflop)
+2. **Choose position**
+3. **Set board texture** (dry/wet/paired)
+4. **Input pot and stack sizes**
+5. **Get optimal frequencies**
+
+## API Endpoints
+
+### Hand Analysis
+```
+POST /api/analyze_hand
+Content-Type: application/json
+
+{
+  "holeCards": "AhKs",
+  "position": "button",
+  "opponentCount": 3
+}
+```
+
+### Bankroll Analysis
+```
+POST /api/bankroll_analysis
+Content-Type: application/json
+
+{
+  "bankroll": 10000,
+  "buyIn": 100,
+  "variance": 1.5
+}
+```
+
+### Tournament Analysis
+```
+POST /api/tournament_analysis
+Content-Type: application/json
+
+{
+  "stackSize": 20000,
+  "blindLevel": 3,
+  "playersLeft": 45,
+  "totalPlayers": 100
+}
+```
+
+### GTO Solver
+```
+POST /api/gto_solver
+Content-Type: application/json
+
+{
+  "scenarioType": "preflop",
+  "position": "button",
+  "boardTexture": "dry",
+  "potSize": 100,
+  "stackSize": 10000
+}
+```
+
+## Mathematical Accuracy
+
+### Monte Carlo Simulations
+- Runs 5,000-10,000 iterations per analysis
+- Statistical accuracy within 95% confidence intervals
+- Professional-grade hand evaluation algorithms
+- Supports all poker hand rankings including edge cases
+
+### Bankroll Calculations
+- Kelly Criterion implementation
+- Realistic risk of ruin formulas
+- Professional bankroll management principles
+- Variance adjustments for different game types
+
+### Tournament Analysis
+- Standard M-ratio calculations
+- ICM pressure considerations
+- Bubble factor adjustments
+- Payout structure optimization
+
+## Browser Compatibility
+
+- **Chrome** 70+
+- **Firefox** 65+
+- **Safari** 12+
+- **Edge** 79+
+- **Mobile browsers** (iOS Safari, Chrome Mobile)
+
+## Performance
+
+- Hand analysis: Under 10 seconds
+- Page load time: Under 3 seconds
+- Memory usage: Optimized for long sessions
+- Responsive design: Works on all screen sizes
+
+## Contributing
+
+### Development Setup
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+### Code Standards
+- Follow PEP 8 for Python code
+- Use ES6+ JavaScript features
+- Maintain responsive design principles
+- Include error handling for all user inputs
+- Ensure mathematical accuracy in all calculations
+
+### Testing
+- Test all poker hand combinations
+- Verify bankroll calculations with known formulas
+- Check mobile responsiveness
+- Validate input edge cases
+- Confirm browser compatibility
+
+## Troubleshooting
+
+### Common Issues
+
+**Backend Connection Failed**
+- Ensure Flask server is running on port 5000
+- Check firewall settings
+- Verify Python dependencies are installed
+
+**Calculations Seem Incorrect**
+- Verify input format for cards (As, Kh, Qd, etc.)
+- Check opponent count is between 1-9
+- Ensure bankroll values are positive numbers
+
+**Charts Not Displaying**
+- Enable JavaScript in browser
+- Check browser console for errors
+- Verify Chart.js library is loading
+
+### Getting Help
+- Check browser console for error messages
+- Verify all input values are within valid ranges
+- Ensure stable internet connection for API calls
+
+## Educational Value
+
+### For Beginners
+- Learn which hands to play from different positions
+- Understand bankroll management fundamentals
+- Develop mathematical thinking about poker
+- Build confidence through data-backed decisions
+
+### For Intermediate Players
+- Identify leaks in hand selection
+- Optimize bankroll allocation
+- Understand GTO concepts
+- Improve tournament play through ICM
+
+### For Advanced Players
+- Fine-tune strategies with precise calculations
+- Analyze complex multi-variable scenarios
+- Validate intuitive decisions mathematically
+- Track performance trends over time
+
+## License
+
+MIT License
+
+Copyright (c) 2024 PokerPro Analytics
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+## Acknowledgments
+
+- Monte Carlo simulation techniques from professional poker analysis
+- Hand evaluation algorithms based on industry standards
+- GTO concepts from game theory research
+- Bankroll management principles from professional players
+- ICM calculations from tournament poker theory

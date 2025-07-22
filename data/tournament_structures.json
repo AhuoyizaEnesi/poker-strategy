@@ -1,0 +1,864 @@
+{
+  "standard_mtt": {
+    "name": "Standard Multi-Table Tournament",
+    "description": "Classic tournament structure with 20-minute levels",
+    "starting_stack": 20000,
+    "starting_blinds": [50, 100],
+    "ante_start_level": 4,
+    "level_duration_minutes": 20,
+    "break_frequency": 6,
+    "break_duration_minutes": 15,
+    "structure": [
+      {"level": 1, "small_blind": 50, "big_blind": 100, "ante": 0, "duration": 20},
+      {"level": 2, "small_blind": 75, "big_blind": 150, "ante": 0, "duration": 20},
+      {"level": 3, "small_blind": 100, "big_blind": 200, "ante": 0, "duration": 20},
+      {"level": 4, "small_blind": 150, "big_blind": 300, "ante": 25, "duration": 20},
+      {"level": 5, "small_blind": 200, "big_blind": 400, "ante": 50, "duration": 20},
+      {"level": 6, "small_blind": 250, "big_blind": 500, "ante": 75, "duration": 20},
+      {"level": 7, "small_blind": 300, "big_blind": 600, "ante": 75, "duration": 20},
+      {"level": 8, "small_blind": 400, "big_blind": 800, "ante": 100, "duration": 20},
+      {"level": 9, "small_blind": 500, "big_blind": 1000, "ante": 125, "duration": 20},
+      {"level": 10, "small_blind": 600, "big_blind": 1200, "ante": 150, "duration": 20},
+      {"level": 11, "small_blind": 800, "big_blind": 1600, "ante": 200, "duration": 20},
+      {"level": 12, "small_blind": 1000, "big_blind": 2000, "ante": 250, "duration": 20},
+      {"level": 13, "small_blind": 1200, "big_blind": 2400, "ante": 300, "duration": 20},
+      {"level": 14, "small_blind": 1500, "big_blind": 3000, "ante": 375, "duration": 20},
+      {"level": 15, "small_blind": 2000, "big_blind": 4000, "ante": 500, "duration": 20},
+      {"level": 16, "small_blind": 2500, "big_blind": 5000, "ante": 625, "duration": 20},
+      {"level": 17, "small_blind": 3000, "big_blind": 6000, "ante": 750, "duration": 20},
+      {"level": 18, "small_blind": 4000, "big_blind": 8000, "ante": 1000, "duration": 20},
+      {"level": 19, "small_blind": 5000, "big_blind": 10000, "ante": 1250, "duration": 20},
+      {"level": 20, "small_blind": 6000, "big_blind": 12000, "ante": 1500, "duration": 20},
+      {"level": 21, "small_blind": 8000, "big_blind": 16000, "ante": 2000, "duration": 20},
+      {"level": 22, "small_blind": 10000, "big_blind": 20000, "ante": 2500, "duration": 20},
+      {"level": 23, "small_blind": 12000, "big_blind": 24000, "ante": 3000, "duration": 20},
+      {"level": 24, "small_blind": 15000, "big_blind": 30000, "ante": 3750, "duration": 20},
+      {"level": 25, "small_blind": 20000, "big_blind": 40000, "ante": 5000, "duration": 20}
+    ],
+    "stage_definitions": {
+      "early": {
+        "levels": [1, 2, 3, 4, 5, 6],
+        "avg_stack_bb": 120,
+        "description": "Deep stack play, focus on building chips",
+        "key_strategy": "tight_aggressive"
+      },
+      "middle": {
+        "levels": [7, 8, 9, 10, 11, 12],
+        "avg_stack_bb": 60,
+        "description": "Antes in play, increased aggression",
+        "key_strategy": "balanced_aggressive"
+      },
+      "late": {
+        "levels": [13, 14, 15, 16, 17],
+        "avg_stack_bb": 30,
+        "description": "Short stack considerations, bubble approaching",
+        "key_strategy": "push_fold_awareness"
+      },
+      "final": {
+        "levels": [18, 19, 20, 21, 22, 23, 24, 25],
+        "avg_stack_bb": 15,
+        "description": "Final table and heads-up play",
+        "key_strategy": "icm_critical"
+      }
+    },
+    "typical_duration_hours": 8
+  },
+
+  "turbo_mtt": {
+    "name": "Turbo Multi-Table Tournament",
+    "description": "Fast-paced tournament with 12-minute levels",
+    "starting_stack": 15000,
+    "starting_blinds": [75, 150],
+    "ante_start_level": 3,
+    "level_duration_minutes": 12,
+    "break_frequency": 5,
+    "break_duration_minutes": 10,
+    "structure": [
+      {"level": 1, "small_blind": 75, "big_blind": 150, "ante": 0, "duration": 12},
+      {"level": 2, "small_blind": 100, "big_blind": 200, "ante": 0, "duration": 12},
+      {"level": 3, "small_blind": 150, "big_blind": 300, "ante": 25, "duration": 12},
+      {"level": 4, "small_blind": 200, "big_blind": 400, "ante": 50, "duration": 12},
+      {"level": 5, "small_blind": 300, "big_blind": 600, "ante": 75, "duration": 12},
+      {"level": 6, "small_blind": 400, "big_blind": 800, "ante": 100, "duration": 12},
+      {"level": 7, "small_blind": 500, "big_blind": 1000, "ante": 125, "duration": 12},
+      {"level": 8, "small_blind": 700, "big_blind": 1400, "ante": 175, "duration": 12},
+      {"level": 9, "small_blind": 1000, "big_blind": 2000, "ante": 250, "duration": 12},
+      {"level": 10, "small_blind": 1500, "big_blind": 3000, "ante": 375, "duration": 12},
+      {"level": 11, "small_blind": 2000, "big_blind": 4000, "ante": 500, "duration": 12},
+      {"level": 12, "small_blind": 3000, "big_blind": 6000, "ante": 750, "duration": 12},
+      {"level": 13, "small_blind": 4000, "big_blind": 8000, "ante": 1000, "duration": 12},
+      {"level": 14, "small_blind": 6000, "big_blind": 12000, "ante": 1500, "duration": 12},
+      {"level": 15, "small_blind": 8000, "big_blind": 16000, "ante": 2000, "duration": 12},
+      {"level": 16, "small_blind": 10000, "big_blind": 20000, "ante": 2500, "duration": 12},
+      {"level": 17, "small_blind": 15000, "big_blind": 30000, "ante": 3750, "duration": 12},
+      {"level": 18, "small_blind": 20000, "big_blind": 40000, "ante": 5000, "duration": 12}
+    ],
+    "stage_definitions": {
+      "early": {
+        "levels": [1, 2, 3, 4],
+        "avg_stack_bb": 75,
+        "description": "Quick early levels, build stack fast",
+        "key_strategy": "aggressive_accumulation"
+      },
+      "middle": {
+        "levels": [5, 6, 7, 8, 9],
+        "avg_stack_bb": 35,
+        "description": "Rapid blind increases, position crucial",
+        "key_strategy": "positional_aggression"
+      },
+      "late": {
+        "levels": [10, 11, 12, 13],
+        "avg_stack_bb": 20,
+        "description": "Short stack territory, push/fold decisions",
+        "key_strategy": "push_fold_mastery"
+      },
+      "final": {
+        "levels": [14, 15, 16, 17, 18],
+        "avg_stack_bb": 10,
+        "description": "Ultra-short stacks, all-in or fold",
+        "key_strategy": "nash_equilibrium"
+      }
+    },
+    "typical_duration_hours": 4
+  },
+
+  "hyper_turbo": {
+    "name": "Hyper Turbo Tournament",
+    "description": "Ultra-fast tournament with 8-minute levels",
+    "starting_stack": 10000,
+    "starting_blinds": [100, 200],
+    "ante_start_level": 2,
+    "level_duration_minutes": 8,
+    "break_frequency": 4,
+    "break_duration_minutes": 5,
+    "structure": [
+      {"level": 1, "small_blind": 100, "big_blind": 200, "ante": 0, "duration": 8},
+      {"level": 2, "small_blind": 150, "big_blind": 300, "ante": 25, "duration": 8},
+      {"level": 3, "small_blind": 200, "big_blind": 400, "ante": 50, "duration": 8},
+      {"level": 4, "small_blind": 300, "big_blind": 600, "ante": 75, "duration": 8},
+      {"level": 5, "small_blind": 500, "big_blind": 1000, "ante": 100, "duration": 8},
+      {"level": 6, "small_blind": 750, "big_blind": 1500, "ante": 150, "duration": 8},
+      {"level": 7, "small_blind": 1000, "big_blind": 2000, "ante": 200, "duration": 8},
+      {"level": 8, "small_blind": 1500, "big_blind": 3000, "ante": 300, "duration": 8},
+      {"level": 9, "small_blind": 2500, "big_blind": 5000, "ante": 500, "duration": 8},
+      {"level": 10, "small_blind": 4000, "big_blind": 8000, "ante": 800, "duration": 8},
+      {"level": 11, "small_blind": 6000, "big_blind": 12000, "ante": 1200, "duration": 8},
+      {"level": 12, "small_blind": 10000, "big_blind": 20000, "ante": 2000, "duration": 8}
+    ],
+    "stage_definitions": {
+      "early": {
+        "levels": [1, 2],
+        "avg_stack_bb": 50,
+        "description": "Immediate action required",
+        "key_strategy": "hyper_aggressive"
+      },
+      "middle": {
+        "levels": [3, 4, 5],
+        "avg_stack_bb": 20,
+        "description": "Push/fold from the start",
+        "key_strategy": "wide_ranges"
+      },
+      "late": {
+        "levels": [6, 7, 8],
+        "avg_stack_bb": 10,
+        "description": "All-in fest begins",
+        "key_strategy": "any_two_cards"
+      },
+      "final": {
+        "levels": [9, 10, 11, 12],
+        "avg_stack_bb": 5,
+        "description": "Pure gambling territory",
+        "key_strategy": "variance_acceptance"
+      }
+    },
+    "typical_duration_hours": 2
+  },
+
+  "deepstack": {
+    "name": "Deep Stack Tournament",
+    "description": "Deep stack tournament with 30-minute levels for skilled play",
+    "starting_stack": 50000,
+    "starting_blinds": [25, 50],
+    "ante_start_level": 6,
+    "level_duration_minutes": 30,
+    "break_frequency": 4,
+    "break_duration_minutes": 20,
+    "structure": [
+      {"level": 1, "small_blind": 25, "big_blind": 50, "ante": 0, "duration": 30},
+      {"level": 2, "small_blind": 50, "big_blind": 100, "ante": 0, "duration": 30},
+      {"level": 3, "small_blind": 75, "big_blind": 150, "ante": 0, "duration": 30},
+      {"level": 4, "small_blind": 100, "big_blind": 200, "ante": 0, "duration": 30},
+      {"level": 5, "small_blind": 150, "big_blind": 300, "ante": 0, "duration": 30},
+      {"level": 6, "small_blind": 200, "big_blind": 400, "ante": 25, "duration": 30},
+      {"level": 7, "small_blind": 250, "big_blind": 500, "ante": 50, "duration": 30},
+      {"level": 8, "small_blind": 300, "big_blind": 600, "ante": 75, "duration": 30},
+      {"level": 9, "small_blind": 400, "big_blind": 800, "ante": 100, "duration": 30},
+      {"level": 10, "small_blind": 500, "big_blind": 1000, "ante": 125, "duration": 30},
+      {"level": 11, "small_blind": 700, "big_blind": 1400, "ante": 175, "duration": 30},
+      {"level": 12, "small_blind": 1000, "big_blind": 2000, "ante": 250, "duration": 30},
+      {"level": 13, "small_blind": 1500, "big_blind": 3000, "ante": 375, "duration": 30},
+      {"level": 14, "small_blind": 2000, "big_blind": 4000, "ante": 500, "duration": 30},
+      {"level": 15, "small_blind": 3000, "big_blind": 6000, "ante": 750, "duration": 30},
+      {"level": 16, "small_blind": 4000, "big_blind": 8000, "ante": 1000, "duration": 30},
+      {"level": 17, "small_blind": 6000, "big_blind": 12000, "ante": 1500, "duration": 30},
+      {"level": 18, "small_blind": 8000, "big_blind": 16000, "ante": 2000, "duration": 30}
+    ],
+    "stage_definitions": {
+      "early": {
+        "levels": [1, 2, 3, 4, 5, 6, 7, 8],
+        "avg_stack_bb": 200,
+        "description": "Very deep stacks, complex postflop play",
+        "key_strategy": "cash_game_style"
+      },
+      "middle": {
+        "levels": [9, 10, 11, 12],
+        "avg_stack_bb": 100,
+        "description": "Still deep, building for late stages",
+        "key_strategy": "accumulation_focus"
+      },
+      "late": {
+        "levels": [13, 14, 15],
+        "avg_stack_bb": 50,
+        "description": "Standard tournament play begins",
+        "key_strategy": "tournament_adjustments"
+      },
+      "final": {
+        "levels": [16, 17, 18],
+        "avg_stack_bb": 25,
+        "description": "Final table considerations",
+        "key_strategy": "icm_awareness"
+      }
+    },
+    "typical_duration_hours": 12
+  },
+
+  "sit_and_go_9max": {
+    "name": "9-Max Sit & Go",
+    "description": "Single table sit and go tournament",
+    "starting_stack": 15000,
+    "starting_blinds": [150, 300],
+    "ante_start_level": 4,
+    "level_duration_minutes": 15,
+    "max_players": 9,
+    "break_frequency": 0,
+    "structure": [
+      {"level": 1, "small_blind": 150, "big_blind": 300, "ante": 0, "duration": 15},
+      {"level": 2, "small_blind": 200, "big_blind": 400, "ante": 0, "duration": 15},
+      {"level": 3, "small_blind": 300, "big_blind": 600, "ante": 0, "duration": 15},
+      {"level": 4, "small_blind": 400, "big_blind": 800, "ante": 25, "duration": 15},
+      {"level": 5, "small_blind": 600, "big_blind": 1200, "ante": 50, "duration": 15},
+      {"level": 6, "small_blind": 800, "big_blind": 1600, "ante": 75, "duration": 15},
+      {"level": 7, "small_blind": 1200, "big_blind": 2400, "ante": 100, "duration": 15},
+      {"level": 8, "small_blind": 1500, "big_blind": 3000, "ante": 150, "duration": 15},
+      {"level": 9, "small_blind": 2000, "big_blind": 4000, "ante": 200, "duration": 15},
+      {"level": 10, "small_blind": 3000, "big_blind": 6000, "ante": 300, "duration": 15}
+    ],
+    "payout_structure": {
+      "1st": 0.50,
+      "2nd": 0.30,
+      "3rd": 0.20
+    },
+    "stage_definitions": {
+      "early": {
+        "levels": [1, 2, 3],
+        "players_range": [9, 8, 7, 6],
+        "avg_stack_bb": 50,
+        "description": "Full table play, build chips",
+        "key_strategy": "tight_aggressive"
+      },
+      "middle": {
+        "levels": [4, 5],
+        "players_range": [6, 5, 4],
+        "avg_stack_bb": 25,
+        "description": "Short-handed play begins",
+        "key_strategy": "positional_aggression"
+      },
+      "bubble": {
+        "levels": [6],
+        "players_range": [4],
+        "avg_stack_bb": 20,
+        "description": "Bubble play, 4 players left",
+        "key_strategy": "bubble_exploitation"
+      },
+      "in_the_money": {
+        "levels": [7, 8, 9, 10],
+        "players_range": [3, 2, 1],
+        "avg_stack_bb": 15,
+        "description": "ITM play, maximize finish",
+        "key_strategy": "payout_optimization"
+      }
+    },
+    "typical_duration_hours": 1.5
+  },
+
+  "heads_up_sng": {
+    "name": "Heads-Up Sit & Go",
+    "description": "1v1 tournament format",
+    "starting_stack": 15000,
+    "starting_blinds": [150, 300],
+    "ante_start_level": 3,
+    "level_duration_minutes": 10,
+    "max_players": 2,
+    "break_frequency": 0,
+    "structure": [
+      {"level": 1, "small_blind": 150, "big_blind": 300, "ante": 0, "duration": 10},
+      {"level": 2, "small_blind": 200, "big_blind": 400, "ante": 0, "duration": 10},
+      {"level": 3, "small_blind": 300, "big_blind": 600, "ante": 25, "duration": 10},
+      {"level": 4, "small_blind": 400, "big_blind": 800, "ante": 50, "duration": 10},
+      {"level": 5, "small_blind": 600, "big_blind": 1200, "ante": 75, "duration": 10},
+      {"level": 6, "small_blind": 800, "big_blind": 1600, "ante": 100, "duration": 10},
+      {"level": 7, "small_blind": 1200, "big_blind": 2400, "ante": 150, "duration": 10},
+      {"level": 8, "small_blind": 1500, "big_blind": 3000, "ante": 200, "duration": 10},
+      {"level": 9, "small_blind": 2000, "big_blind": 4000, "ante": 250, "duration": 10},
+      {"level": 10, "small_blind": 3000, "big_blind": 6000, "ante": 300, "duration": 10}
+    ],
+    "payout_structure": {
+      "1st": 1.0,
+      "2nd": 0.0
+    },
+    "stage_definitions": {
+      "early": {
+        "levels": [1, 2, 3],
+        "avg_stack_bb": 50,
+        "description": "Deep heads-up play",
+        "key_strategy": "positional_warfare"
+      },
+      "middle": {
+        "levels": [4, 5, 6],
+        "avg_stack_bb": 25,
+        "description": "Medium stack heads-up",
+        "key_strategy": "aggressive_postflop"
+      },
+      "late": {
+        "levels": [7, 8, 9, 10],
+        "avg_stack_bb": 15,
+        "description": "Short stack heads-up",
+        "key_strategy": "preflop_aggression"
+      }
+    },
+    "typical_duration_hours": 1
+  },
+
+  "progressive_knockout": {
+    "name": "Progressive Knockout Tournament",
+    "description": "Bounty tournament where eliminating players awards progressive prizes",
+    "starting_stack": 20000,
+    "starting_blinds": [100, 200],
+    "ante_start_level": 4,
+    "level_duration_minutes": 20,
+    "break_frequency": 6,
+    "break_duration_minutes": 15,
+    "bounty_structure": {
+      "starting_bounty": 25,
+      "bounty_distribution": {
+        "eliminator_gets": 0.5,
+        "progressive_add": 0.5
+      },
+      "prize_pool_split": {
+        "regular_prizes": 0.70,
+        "bounty_pool": 0.30
+      }
+    },
+    "structure": [
+      {"level": 1, "small_blind": 100, "big_blind": 200, "ante": 0, "duration": 20},
+      {"level": 2, "small_blind": 150, "big_blind": 300, "ante": 0, "duration": 20},
+      {"level": 3, "small_blind": 200, "big_blind": 400, "ante": 0, "duration": 20},
+      {"level": 4, "small_blind": 300, "big_blind": 600, "ante": 25, "duration": 20},
+      {"level": 5, "small_blind": 400, "big_blind": 800, "ante": 50, "duration": 20},
+      {"level": 6, "small_blind": 600, "big_blind": 1200, "ante": 75, "duration": 20},
+      {"level": 7, "small_blind": 800, "big_blind": 1600, "ante": 100, "duration": 20},
+      {"level": 8, "small_blind": 1200, "big_blind": 2400, "ante": 150, "duration": 20},
+      {"level": 9, "small_blind": 1500, "big_blind": 3000, "ante": 200, "duration": 20},
+      {"level": 10, "small_blind": 2000, "big_blind": 4000, "ante": 250, "duration": 20},
+      {"level": 11, "small_blind": 3000, "big_blind": 6000, "ante": 300, "duration": 20},
+      {"level": 12, "small_blind": 4000, "big_blind": 8000, "ante": 400, "duration": 20}
+    ],
+    "stage_definitions": {
+      "early": {
+        "levels": [1, 2, 3, 4],
+        "avg_stack_bb": 100,
+        "description": "Build stack and hunt bounties",
+        "key_strategy": "bounty_hunting"
+      },
+      "middle": {
+        "levels": [5, 6, 7, 8],
+        "avg_stack_bb": 50,
+        "description": "Balance bounties vs survival",
+        "key_strategy": "selective_aggression"
+      },
+      "late": {
+        "levels": [9, 10],
+        "avg_stack_bb": 25,
+        "description": "High-value bounties available",
+        "key_strategy": "icm_vs_bounties"
+      },
+      "final": {
+        "levels": [11, 12],
+        "avg_stack_bb": 15,
+        "description": "Massive bounties at final table",
+        "key_strategy": "bounty_maximization"
+      }
+    },
+    "typical_duration_hours": 6
+  },
+
+  "mystery_bounty": {
+    "name": "Mystery Bounty Tournament",
+    "description": "Bounty tournament with mystery prize envelopes",
+    "starting_stack": 20000,
+    "starting_blinds": [100, 200],
+    "ante_start_level": 4,
+    "level_duration_minutes": 20,
+    "mystery_bounty_activation": "day_2_or_final_levels",
+    "break_frequency": 6,
+    "break_duration_minutes": 15,
+    "bounty_distribution": {
+      "mystery_prizes": [10, 25, 50, 100, 250, 500, 1000, 2500, 5000],
+      "prize_quantities": [100, 80, 60, 40, 20, 10, 5, 2, 1],
+      "activation_trigger": "50_percent_elimination"
+    },
+    "structure": [
+      {"level": 1, "small_blind": 100, "big_blind": 200, "ante": 0, "duration": 20},
+      {"level": 2, "small_blind": 150, "big_blind": 300, "ante": 0, "duration": 20},
+      {"level": 3, "small_blind": 200, "big_blind": 400, "ante": 0, "duration": 20},
+      {"level": 4, "small_blind": 300, "big_blind": 600, "ante": 25, "duration": 20},
+      {"level": 5, "small_blind": 400, "big_blind": 800, "ante": 50, "duration": 20},
+      {"level": 6, "small_blind": 600, "big_blind": 1200, "ante": 75, "duration": 20},
+      {"level": 7, "small_blind": 800, "big_blind": 1600, "ante": 100, "duration": 20},
+      {"level": 8, "small_blind": 1200, "big_blind": 2400, "ante": 150, "duration": 20},
+      {"level": 9, "small_blind": 1500, "big_blind": 3000, "ante": 200, "duration": 20},
+      {"level": 10, "small_blind": 2000, "big_blind": 4000, "ante": 250, "duration": 20}
+    ],
+    "stage_definitions": {
+      "pre_mystery": {
+        "levels": [1, 2, 3, 4, 5],
+        "avg_stack_bb": 80,
+        "description": "Standard play before mystery activation",
+        "key_strategy": "chip_accumulation"
+      },
+      "mystery_active": {
+        "levels": [6, 7, 8, 9, 10],
+        "avg_stack_bb": 40,
+        "description": "Mystery bounties active, high variance",
+        "key_strategy": "bounty_lottery"
+      }
+    },
+    "typical_duration_hours": 5
+  },
+
+  "satellite_tournament": {
+    "name": "Satellite Tournament",
+    "description": "Tournament where top finishers win seats to larger events",
+    "starting_stack": 20000,
+    "starting_blinds": [100, 200],
+    "ante_start_level": 4,
+    "level_duration_minutes": 15,
+    "break_frequency": 6,
+    "break_duration_minutes": 10,
+    "target_event": "Main Event",
+    "seat_value": 5000,
+    "seats_awarded": "based_on_entries",
+    "structure": [
+      {"level": 1, "small_blind": 100, "big_blind": 200, "ante": 0, "duration": 15},
+      {"level": 2, "small_blind": 150, "big_blind": 300, "ante": 0, "duration": 15},
+      {"level": 3, "small_blind": 200, "big_blind": 400, "ante": 0, "duration": 15},
+      {"level": 4, "small_blind": 300, "big_blind": 600, "ante": 25, "duration": 15},
+      {"level": 5, "small_blind": 400, "big_blind": 800, "ante": 50, "duration": 15},
+      {"level": 6, "small_blind": 600, "big_blind": 1200, "ante": 75, "duration": 15},
+      {"level": 7, "small_blind": 800, "big_blind": 1600, "ante": 100, "duration": 15},
+      {"level": 8, "small_blind": 1200, "big_blind": 2400, "ante": 150, "duration": 15},
+      {"level": 9, "small_blind": 1500, "big_blind": 3000, "ante": 200, "duration": 15},
+      {"level": 10, "small_blind": 2000, "big_blind": 4000, "ante": 250, "duration": 15}
+    ],
+    "special_rules": {
+      "winner_takes_all": false,
+      "chip_chop_allowed": true,
+      "seat_distribution": "equal_seats_for_qualifiers",
+      "bubble_considerations": "extreme_icm"
+    },
+    "stage_definitions": {
+      "qualification_phase": {
+        "levels": [1, 2, 3, 4, 5, 6],
+        "avg_stack_bb": 60,
+        "description": "Focus on survival and qualification",
+        "key_strategy": "satellite_specific"
+      },
+      "bubble_phase": {
+        "levels": [7, 8, 9, 10],
+        "avg_stack_bb": 25,
+        "description": "Extreme bubble considerations",
+        "key_strategy": "survival_priority"
+      }
+    },
+    "typical_duration_hours": 3
+  },
+
+  "rebuy_tournament": {
+    "name": "Rebuy Tournament",
+    "description": "Tournament allowing rebuys and add-ons during early levels",
+    "starting_stack": 15000,
+    "starting_blinds": [100, 200],
+    "ante_start_level": 4,
+    "level_duration_minutes": 20,
+    "rebuy_period_levels": 8,
+    "add_on_level": 8,
+    "rebuy_cost": "same_as_entry",
+    "rebuy_stack": 15000,
+    "add_on_cost": "same_as_entry",
+    "add_on_stack": 20000,
+    "break_frequency": 6,
+    "break_duration_minutes": 15,
+    "structure": [
+      {"level": 1, "small_blind": 100, "big_blind": 200, "ante": 0, "duration": 20, "rebuy_allowed": true},
+      {"level": 2, "small_blind": 150, "big_blind": 300, "ante": 0, "duration": 20, "rebuy_allowed": true},
+      {"level": 3, "small_blind": 200, "big_blind": 400, "ante": 0, "duration": 20, "rebuy_allowed": true},
+      {"level": 4, "small_blind": 300, "big_blind": 600, "ante": 25, "duration": 20, "rebuy_allowed": true},
+      {"level": 5, "small_blind": 400, "big_blind": 800, "ante": 50, "duration": 20, "rebuy_allowed": true},
+      {"level": 6, "small_blind": 600, "big_blind": 1200, "ante": 75, "duration": 20, "rebuy_allowed": true},
+      {"level": 7, "small_blind": 800, "big_blind": 1600, "ante": 100, "duration": 20, "rebuy_allowed": true},
+      {"level": 8, "small_blind": 1200, "big_blind": 2400, "ante": 150, "duration": 20, "rebuy_allowed": true, "add_on_available": true},
+      {"level": 9, "small_blind": 1500, "big_blind": 3000, "ante": 200, "duration": 20, "rebuy_allowed": false},
+      {"level": 10, "small_blind": 2000, "big_blind": 4000, "ante": 250, "duration": 20, "rebuy_allowed": false},
+      {"level": 11, "small_blind": 3000, "big_blind": 6000, "ante": 300, "duration": 20, "rebuy_allowed": false},
+      {"level": 12, "small_blind": 4000, "big_blind": 8000, "ante": 400, "duration": 20, "rebuy_allowed": false}
+    ],
+    "rebuy_rules": {
+      "rebuy_threshold": "at_or_below_starting_stack",
+      "rebuy_timing": "end_of_hand_only",
+      "max_rebuys": "unlimited",
+      "double_rebuy_allowed": true
+    },
+    "stage_definitions": {
+      "rebuy_period": {
+        "levels": [1, 2, 3, 4, 5, 6, 7, 8],
+        "avg_stack_bb": 75,
+        "description": "Aggressive play with rebuy safety net",
+        "key_strategy": "gamble_with_rebuys"
+      },
+      "post_rebuy": {
+        "levels": [9, 10, 11, 12],
+        "avg_stack_bb": 35,
+        "description": "Standard tournament play begins",
+        "key_strategy": "freeze_out_style"
+      }
+    },
+    "typical_duration_hours": 7
+  },
+
+  "shootout": {
+    "name": "Shootout Tournament",
+    "description": "Multi-round tournament where table winners advance",
+    "starting_stack": 20000,
+    "starting_blinds": [100, 200],
+    "ante_start_level": 4,
+    "level_duration_minutes": 20,
+    "table_size": 8,
+    "advancement_rule": "winner_only",
+    "total_rounds": 3,
+    "break_frequency": 0,
+    "structure": [
+      {"level": 1, "small_blind": 100, "big_blind": 200, "ante": 0, "duration": 20},
+      {"level": 2, "small_blind": 150, "big_blind": 300, "ante": 0, "duration": 20},
+      {"level": 3, "small_blind": 200, "big_blind": 400, "ante": 0, "duration": 20},
+      {"level": 4, "small_blind": 300, "big_blind": 600, "ante": 25, "duration": 20},
+      {"level": 5, "small_blind": 400, "big_blind": 800, "ante": 50, "duration": 20},
+      {"level": 6, "small_blind": 600, "big_blind": 1200, "ante": 75, "duration": 20},
+      {"level": 7, "small_blind": 800, "big_blind": 1600, "ante": 100, "duration": 20},
+      {"level": 8, "small_blind": 1200, "big_blind": 2400, "ante": 150, "duration": 20}
+    ],
+    "round_structure": {
+      "round_1": {
+        "tables": "multiple",
+        "players_per_table": 8,
+        "advance_per_table": 1,
+        "typical_duration": "2-3 hours"
+      },
+      "round_2": {
+        "tables": "fewer",
+        "players_per_table": 8,
+        "advance_per_table": 1,
+        "typical_duration": "2-3 hours"
+      },
+      "round_3": {
+        "tables": 1,
+        "players_per_table": 8,
+        "advance_per_table": "final_table",
+        "typical_duration": "2-3 hours"
+      }
+    },
+    "stage_definitions": {
+      "round_1": {
+        "levels": [1, 2, 3],
+        "avg_stack_bb": 100,
+        "description": "Win your table to advance",
+        "key_strategy": "table_domination"
+      },
+      "round_2": {
+        "levels": [4, 5, 6],
+        "avg_stack_bb": 50,
+        "description": "Elite competition, one table win needed",
+        "key_strategy": "selective_aggression"
+      },
+      "round_3": {
+        "levels": [7, 8],
+        "avg_stack_bb": 25,
+        "description": "Final shootout for the title",
+        "key_strategy": "heads_up_preparation"
+      }
+    },
+    "typical_duration_hours": 8
+  },
+
+  "payout_structures": {
+    "standard_mtt_field_sizes": {
+      "small_field_100_players": {
+        "places_paid": 15,
+        "bubble_position": 16,
+        "payouts": {
+          "1": 0.30, "2": 0.20, "3": 0.14, "4": 0.10, "5": 0.07,
+          "6": 0.05, "7": 0.04, "8": 0.035, "9": 0.03, "10-12": 0.025,
+          "13-15": 0.02
+        }
+      },
+      "medium_field_500_players": {
+        "places_paid": 75,
+        "bubble_position": 76,
+        "payouts": {
+          "1": 0.22, "2": 0.15, "3": 0.11, "4": 0.08, "5": 0.06,
+          "6": 0.045, "7": 0.035, "8": 0.03, "9": 0.025, "10-12": 0.022,
+          "13-15": 0.019, "16-18": 0.017, "19-27": 0.015, "28-36": 0.013,
+          "37-45": 0.011, "46-54": 0.009, "55-63": 0.008, "64-75": 0.007
+        }
+      },
+      "large_field_1000_players": {
+        "places_paid": 150,
+        "bubble_position": 151,
+        "payouts": {
+          "1": 0.20, "2": 0.14, "3": 0.10, "4": 0.075, "5": 0.055,
+          "6": 0.045, "7": 0.035, "8": 0.028, "9": 0.022, "10-12": 0.018,
+          "13-15": 0.015, "16-18": 0.013, "19-27": 0.011, "28-36": 0.009,
+          "37-54": 0.008, "55-72": 0.007, "73-99": 0.006, "100-150": 0.005
+        }
+      },
+      "massive_field_5000_players": {
+        "places_paid": 750,
+        "bubble_position": 751,
+        "payouts": {
+          "1": 0.18, "2": 0.12, "3": 0.09, "4": 0.07, "5": 0.055,
+          "6": 0.045, "7": 0.038, "8": 0.032, "9": 0.027, "10-12": 0.023,
+          "13-15": 0.020, "16-18": 0.018, "19-27": 0.016, "28-36": 0.014,
+          "37-54": 0.012, "55-72": 0.010, "73-99": 0.009, "100-150": 0.008,
+          "151-225": 0.007, "226-300": 0.006, "301-450": 0.005, "451-750": 0.004
+        }
+      }
+    },
+    "specialty_payouts": {
+      "winner_take_all": {
+        "places_paid": 1,
+        "payouts": {"1": 1.0}
+      },
+      "top_heavy": {
+        "description": "70% to top 3 finishers",
+        "places_paid": 10,
+        "payouts": {
+          "1": 0.40, "2": 0.20, "3": 0.10, "4": 0.08, "5": 0.06,
+          "6": 0.05, "7": 0.04, "8": 0.03, "9": 0.02, "10": 0.02
+        }
+      },
+      "flat_payout": {
+        "description": "More even distribution",
+        "places_paid": 20,
+        "payouts": {
+          "1": 0.15, "2": 0.12, "3": 0.10, "4": 0.08, "5": 0.07,
+          "6": 0.06, "7": 0.055, "8": 0.05, "9": 0.045, "10": 0.04,
+          "11-15": 0.035, "16-20": 0.03
+        }
+      }
+    }
+  },
+
+  "icm_considerations": {
+    "tournament_stages": {
+      "early_stage": {
+        "chip_utility": 1.0,
+        "survival_premium": 0.0,
+        "risk_tolerance": "high",
+        "strategy_adjustment": "minimal"
+      },
+      "middle_stage": {
+        "chip_utility": 0.95,
+        "survival_premium": 0.05,
+        "risk_tolerance": "medium_high",
+        "strategy_adjustment": "slight_tightening"
+      },
+      "approaching_bubble": {
+        "chip_utility": 0.85,
+        "survival_premium": 0.15,
+        "risk_tolerance": "medium",
+        "strategy_adjustment": "moderate_tightening"
+      },
+      "bubble": {
+        "chip_utility": 0.70,
+        "survival_premium": 0.30,
+        "risk_tolerance": "low",
+        "strategy_adjustment": "significant_tightening"
+      },
+      "early_money": {
+        "chip_utility": 0.80,
+        "survival_premium": 0.20,
+        "risk_tolerance": "medium_low",
+        "strategy_adjustment": "icm_aware"
+      },
+      "final_table_bubble": {
+        "chip_utility": 0.65,
+        "survival_premium": 0.35,
+        "risk_tolerance": "very_low",
+        "strategy_adjustment": "extreme_tightening"
+      },
+      "final_table": {
+        "chip_utility": 0.60,
+        "survival_premium": 0.40,
+        "risk_tolerance": "variable",
+        "strategy_adjustment": "payout_jump_dependent"
+      },
+      "heads_up": {
+        "chip_utility": 0.90,
+        "survival_premium": 0.10,
+        "risk_tolerance": "high",
+        "strategy_adjustment": "aggressive_optimal"
+      }
+    },
+    "stack_size_considerations": {
+      "big_stack": {
+        "stack_ratio_threshold": 2.0,
+        "icm_advantage": "pressure_smaller_stacks",
+        "strategy": "controlled_aggression"
+      },
+      "medium_stack": {
+        "stack_ratio_threshold": [0.7, 1.5],
+        "icm_consideration": "survival_vs_accumulation",
+        "strategy": "balanced_approach"
+      },
+      "short_stack": {
+        "stack_ratio_threshold": 0.5,
+        "icm_pressure": "high_risk_high_reward",
+        "strategy": "calculated_desperation"
+      },
+      "micro_stack": {
+        "stack_ratio_threshold": 0.25,
+        "icm_impact": "minimal_fold_equity",
+        "strategy": "all_in_or_fold"
+      }
+    }
+  },
+
+  "push_fold_charts": {
+    "effective_stack_ranges": {
+      "20bb_and_under": {
+        "strategy": "simplified_push_fold",
+        "considerations": ["position", "action_before", "opponents_left"],
+        "nash_equilibrium": true
+      },
+      "15bb_and_under": {
+        "strategy": "strict_push_fold",
+        "considerations": ["position", "nash_ranges"],
+        "complex_postflop": false
+      },
+      "10bb_and_under": {
+        "strategy": "wide_push_fold",
+        "considerations": ["position_only"],
+        "any_ace": "often_correct"
+      },
+      "5bb_and_under": {
+        "strategy": "any_two_cards",
+        "considerations": ["first_to_act"],
+        "fold_equity": "minimal"
+      }
+    },
+    "position_adjustments": {
+      "early_position": {
+        "range_tightening": 0.3,
+        "description": "Tighten significantly due to action behind"
+      },
+      "middle_position": {
+        "range_tightening": 0.15,
+        "description": "Moderate tightening"
+      },
+      "late_position": {
+        "range_expansion": 0.2,
+        "description": "Widen ranges with position advantage"
+      },
+      "button": {
+        "range_expansion": 0.4,
+        "description": "Maximum range expansion"
+      },
+      "small_blind": {
+        "range_adjustment": 0.1,
+        "description": "Slight range expansion vs big blind only"
+      }
+    }
+  },
+
+  "advanced_tournament_concepts": {
+    "bubble_dynamics": {
+      "pressure_points": {
+        "money_bubble": "survival_premium_maximum",
+        "final_table_bubble": "payout_jump_significance",
+        "heads_up_bubble": "winner_vs_runner_up"
+      },
+      "exploitation_strategies": {
+        "big_stack_vs_medium": "relentless_pressure",
+        "medium_vs_short": "selective_aggression",
+        "short_stack_spots": "calculated_gambles"
+      }
+    },
+    "final_table_strategy": {
+      "seat_selection": "stack_size_dependent",
+      "deal_making": {
+        "icm_chops": "mathematically_fair",
+        "chip_chops": "favors_big_stacks",
+        "negotiation_factors": ["skill_edge", "variance_tolerance"]
+      },
+      "heads_up_preparation": {
+        "range_adjustments": "position_dependent",
+        "aggression_levels": "stack_size_dependent",
+        "mental_game": "variance_acceptance"
+      }
+    },
+    "tournament_specific_skills": {
+      "stack_management": {
+        "preservation_vs_accumulation": "stage_dependent",
+        "risk_assessment": "icm_weighted",
+        "timing_considerations": "level_awareness"
+      },
+      "opponent_profiling": {
+        "recreational_players": "exploit_tight_play",
+        "professionals": "avoid_marginal_spots",
+        "short_stack_desperation": "call_wider"
+      }
+    }
+  },
+
+  "common_tournament_situations": {
+    "early_stage_decisions": {
+      "speculative_hands": "play_for_implied_odds",
+      "premium_hands": "build_pot_aggressively",
+      "marginal_spots": "avoid_unless_positioned"
+    },
+    "middle_stage_decisions": {
+      "steal_attempts": "position_and_stack_dependent",
+      "3bet_ranges": "tighten_slightly",
+      "calling_ranges": "icm_considerations_begin"
+    },
+    "late_stage_decisions": {
+      "push_fold_spots": "nash_equilibrium_adherence",
+      "bubble_exploitation": "stack_size_dependent",
+      "survival_vs_chips": "payout_structure_dependent"
+    },
+    "final_table_decisions": {
+      "ladder_considerations": "every_elimination_matters",
+      "deal_negotiations": "icm_vs_skill_edge",
+      "heads_up_preparation": "aggressive_range_expansion"
+    }
+  }
+}

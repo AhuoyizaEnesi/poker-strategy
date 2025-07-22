@@ -1,0 +1,432 @@
+{
+  "preflop": {
+    "open_sizing": {
+      "early_position": 2.5,
+      "middle_position": 2.5,
+      "late_position": 2.0,
+      "small_blind": 3.0,
+      "big_blind": 2.5
+    },
+    "3bet_sizing": {
+      "in_position": 3.0,
+      "out_of_position": 3.5,
+      "vs_early_position": 3.2,
+      "vs_late_position": 2.8,
+      "linear": 3.0,
+      "polarized": 3.5
+    },
+    "4bet_sizing": {
+      "for_value": 2.2,
+      "as_bluff": 2.5,
+      "vs_linear_3bet": 2.0,
+      "vs_polarized_3bet": 2.3
+    },
+    "5bet_sizing": {
+      "jam_threshold": 100,
+      "fold_threshold": 25,
+      "call_threshold": 40
+    },
+    "frequencies": {
+      "UTG": {
+        "open_frequency": 0.12,
+        "3bet_frequency": 0.04,
+        "4bet_frequency": 0.015,
+        "fold_to_3bet": 0.65
+      },
+      "MP": {
+        "open_frequency": 0.18,
+        "3bet_frequency": 0.05,
+        "4bet_frequency": 0.02,
+        "fold_to_3bet": 0.62
+      },
+      "CO": {
+        "open_frequency": 0.25,
+        "3bet_frequency": 0.06,
+        "4bet_frequency": 0.025,
+        "fold_to_3bet": 0.58
+      },
+      "BTN": {
+        "open_frequency": 0.45,
+        "3bet_frequency": 0.08,
+        "4bet_frequency": 0.03,
+        "fold_to_3bet": 0.55
+      },
+      "SB": {
+        "open_frequency": 0.65,
+        "3bet_frequency": 0.12,
+        "4bet_frequency": 0.04,
+        "fold_to_3bet": 0.52
+      },
+      "BB": {
+        "defend_frequency": 0.75,
+        "3bet_frequency": 0.10,
+        "4bet_frequency": 0.035,
+        "squeeze_frequency": 0.08
+      }
+    }
+  },
+  "postflop": {
+    "flop": {
+      "c_bet_frequency": {
+        "in_position": {
+          "dry_boards": 0.75,
+          "wet_boards": 0.65,
+          "paired_boards": 0.80,
+          "ace_high": 0.70,
+          "king_high": 0.68,
+          "low_connected": 0.60
+        },
+        "out_of_position": {
+          "dry_boards": 0.65,
+          "wet_boards": 0.55,
+          "paired_boards": 0.70,
+          "ace_high": 0.60,
+          "king_high": 0.58,
+          "low_connected": 0.50
+        }
+      },
+      "c_bet_sizing": {
+        "small": 0.33,
+        "medium": 0.66,
+        "large": 1.0,
+        "overbet": 1.5,
+        "default_dry": 0.66,
+        "default_wet": 0.33,
+        "default_paired": 0.33
+      },
+      "check_raise_frequency": {
+        "in_position": 0.08,
+        "out_of_position": 0.12,
+        "vs_small_bet": 0.15,
+        "vs_large_bet": 0.08,
+        "draw_heavy_boards": 0.14,
+        "dry_boards": 0.06
+      },
+      "donk_bet_frequency": {
+        "general": 0.05,
+        "multiway": 0.08,
+        "draw_heavy": 0.12,
+        "coordinated": 0.10,
+        "paired": 0.03
+      }
+    },
+    "turn": {
+      "double_barrel_frequency": {
+        "in_position": 0.55,
+        "out_of_position": 0.45,
+        "after_flop_call": 0.60,
+        "after_flop_check": 0.30,
+        "brick_turns": 0.65,
+        "scary_turns": 0.40
+      },
+      "turn_sizing": {
+        "small": 0.5,
+        "medium": 0.75,
+        "large": 1.0,
+        "overbet": 1.5,
+        "default": 0.75
+      },
+      "check_call_frequency": {
+        "marginal_hands": 0.70,
+        "draws": 0.80,
+        "air": 0.25,
+        "strong_hands": 0.30
+      },
+      "probe_bet_frequency": {
+        "after_check": 0.25,
+        "with_draws": 0.35,
+        "with_pairs": 0.20,
+        "bluff": 0.15
+      }
+    },
+    "river": {
+      "value_bet_frequency": {
+        "nuts": 0.95,
+        "strong_value": 0.85,
+        "thin_value": 0.65,
+        "marginal_value": 0.40
+      },
+      "bluff_frequency": {
+        "missed_draws": 0.70,
+        "air": 0.45,
+        "blockers": 0.60,
+        "no_showdown_value": 0.55
+      },
+      "river_sizing": {
+        "thin_value": 0.5,
+        "medium_value": 0.75,
+        "thick_value": 1.0,
+        "polarized": 1.25,
+        "small_bluff": 0.33,
+        "large_bluff": 1.5
+      },
+      "call_frequency": {
+        "strong_hands": 0.95,
+        "bluff_catchers": 0.65,
+        "weak_pairs": 0.35,
+        "ace_high": 0.25
+      }
+    }
+  },
+  "bet_sizing": {
+    "value_betting": {
+      "nuts": 1.0,
+      "near_nuts": 0.75,
+      "strong_value": 0.66,
+      "medium_value": 0.5,
+      "thin_value": 0.33
+    },
+    "bluffing": {
+      "pure_bluff": 0.66,
+      "semi_bluff": 0.5,
+      "polarized_bluff": 1.25,
+      "small_bluff": 0.33,
+      "overbet_bluff": 1.5
+    },
+    "protection": {
+      "vulnerable_hands": 0.66,
+      "medium_strength": 0.5,
+      "drawing_hands": 0.33
+    }
+  },
+  "range_construction": {
+    "preflop": {
+      "value_3bet_ratio": 0.65,
+      "bluff_3bet_ratio": 0.35,
+      "linear_range": {
+        "description": "Continuous range of strongest hands",
+        "example": ["AA", "KK", "QQ", "JJ", "TT", "99", "AKs", "AQs"]
+      },
+      "polarized_range": {
+        "description": "Strong hands + bluffs, weak middling hands removed",
+        "value_component": ["AA", "KK", "QQ", "AKs"],
+        "bluff_component": ["A5s", "A4s", "A3s", "A2s"]
+      },
+      "merged_range": {
+        "description": "Mixed range with value, semi-bluffs, and bluffs",
+        "composition": {
+          "value": 0.6,
+          "semi_bluff": 0.25,
+          "pure_bluff": 0.15
+        }
+      }
+    },
+    "postflop": {
+      "c_bet_range": {
+        "value_hands": ["top_pair_good_kicker", "two_pair", "sets", "straights", "flushes"],
+        "semi_bluffs": ["flush_draws", "straight_draws", "combo_draws", "overcards"],
+        "pure_bluffs": ["air_with_blockers", "backdoor_draws"]
+      },
+      "check_range": {
+        "pot_control": ["medium_strength", "showdown_value"],
+        "trap": ["strong_hands", "sets_on_dry_boards"],
+        "give_up": ["complete_air", "no_equity"]
+      }
+    }
+  },
+  "board_textures": {
+    "dry": {
+      "examples": ["A72r", "K63r", "Q84r"],
+      "c_bet_frequency": 0.75,
+      "c_bet_size": 0.66,
+      "characteristics": ["low_connectivity", "few_draws", "static"]
+    },
+    "wet": {
+      "examples": ["789ss", "JT5ss", "KQJr"],
+      "c_bet_frequency": 0.55,
+      "c_bet_size": 0.33,
+      "characteristics": ["high_connectivity", "many_draws", "dynamic"]
+    },
+    "paired": {
+      "examples": ["AAK", "775", "JJ3"],
+      "c_bet_frequency": 0.80,
+      "c_bet_size": 0.33,
+      "characteristics": ["reduced_combinations", "polarized_ranges"]
+    },
+    "monotone": {
+      "examples": ["As7s2s", "KhQh5h"],
+      "c_bet_frequency": 0.85,
+      "c_bet_size": 0.75,
+      "characteristics": ["flush_complete", "polarized_action"]
+    },
+    "coordinated": {
+      "examples": ["9T8", "567", "QJT"],
+      "c_bet_frequency": 0.45,
+      "c_bet_size": 0.33,
+      "characteristics": ["straight_heavy", "many_draws"]
+    }
+  },
+  "exploitative_adjustments": {
+    "vs_tight_players": {
+      "increase_bluff_frequency": 0.2,
+      "decrease_value_bet_thinness": 0.15,
+      "widen_stealing_ranges": 0.3,
+      "fold_to_aggression_more": 0.1
+    },
+    "vs_loose_players": {
+      "decrease_bluff_frequency": 0.25,
+      "increase_value_bet_thinness": 0.2,
+      "tighten_opening_ranges": 0.15,
+      "call_down_lighter": 0.2
+    },
+    "vs_aggressive_players": {
+      "trap_more_often": 0.3,
+      "check_call_increase": 0.25,
+      "reduce_c_bet_frequency": 0.15,
+      "4bet_bluff_less": 0.2
+    },
+    "vs_passive_players": {
+      "value_bet_thinner": 0.3,
+      "increase_c_bet_frequency": 0.2,
+      "barrel_more_often": 0.25,
+      "reduce_check_calling": 0.15
+    }
+  },
+  "advanced_concepts": {
+    "range_merging": {
+      "description": "Betting medium strength hands for value and protection",
+      "examples": ["second_pair", "weak_top_pair", "middle_pair_good_kicker"],
+      "frequency": 0.65
+    },
+    "range_polarization": {
+      "description": "Betting only very strong hands and bluffs",
+      "value_threshold": "two_pair_plus",
+      "bluff_selection": "no_showdown_value",
+      "frequency": 0.45
+    },
+    "blockers": {
+      "removal_effects": {
+        "nut_blockers": ["As", "Ks on flush boards"],
+        "straight_blockers": ["key cards for straights"],
+        "set_blockers": ["pocket pairs on paired boards"]
+      },
+      "usage": {
+        "bluff_selection": 0.8,
+        "thin_value_decisions": 0.6,
+        "hero_call_decisions": 0.7
+      }
+    },
+    "equity_realization": {
+      "position_factors": {
+        "in_position_bonus": 0.15,
+        "out_of_position_penalty": 0.12,
+        "multiway_reduction": 0.2
+      },
+      "hand_type_factors": {
+        "suited_hands": 0.08,
+        "connected_hands": 0.05,
+        "pocket_pairs": 0.12,
+        "broadway_cards": 0.06
+      }
+    }
+  },
+  "tournament_adjustments": {
+    "early_stage": {
+      "play_style": "similar_to_cash",
+      "stack_preservation": 0.1,
+      "range_tightening": 0.05
+    },
+    "middle_stage": {
+      "play_style": "slightly_more_aggressive",
+      "ante_adjustment": 0.15,
+      "blind_pressure": 0.2,
+      "range_widening": 0.1
+    },
+    "late_stage": {
+      "play_style": "highly_aggressive",
+      "icm_considerations": 0.3,
+      "push_fold_threshold": 15,
+      "range_expansion": 0.25
+    },
+    "bubble": {
+      "play_style": "exploit_stack_sizes",
+      "big_stack_pressure": 0.4,
+      "short_stack_tightness": 0.3,
+      "medium_stack_caution": 0.2
+    },
+    "final_table": {
+      "play_style": "icm_heavy",
+      "payout_considerations": 0.5,
+      "stack_leverage": 0.35,
+      "survival_premium": 0.25
+    }
+  },
+  "stack_depth_adjustments": {
+    "short_stack_20bb": {
+      "preflop_strategy": "push_fold",
+      "open_jam_range": 0.35,
+      "calling_range": 0.15,
+      "3bet_jam_frequency": 0.8
+    },
+    "medium_stack_40bb": {
+      "preflop_strategy": "standard_with_adjustments",
+      "reduced_speculative_hands": 0.2,
+      "tighter_3bet_ranges": 0.15,
+      "stack_preservation": 0.1
+    },
+    "deep_stack_150bb": {
+      "preflop_strategy": "expanded_ranges",
+      "speculative_hand_bonus": 0.25,
+      "implied_odds_emphasis": 0.3,
+      "postflop_complexity": 0.4
+    },
+    "very_deep_300bb": {
+      "preflop_strategy": "cash_game_style",
+      "maximum_speculation": 0.4,
+      "reverse_implied_odds": 0.2,
+      "position_premium": 0.3
+    }
+  },
+  "multiway_adjustments": {
+    "3way_pots": {
+      "range_tightening": 0.15,
+      "c_bet_reduction": 0.1,
+      "value_bet_threshold_increase": 0.2
+    },
+    "4way_plus": {
+      "range_tightening": 0.3,
+      "c_bet_reduction": 0.25,
+      "value_bet_threshold_increase": 0.4,
+      "bluff_frequency_reduction": 0.5
+    }
+  },
+  "position_specific": {
+    "early_position": {
+      "range_tightness": "very_tight",
+      "postflop_caution": 0.2,
+      "value_bet_threshold": "strong_hands_only"
+    },
+    "middle_position": {
+      "range_tightness": "tight",
+      "postflop_caution": 0.15,
+      "value_bet_threshold": "medium_strong"
+    },
+    "late_position": {
+      "range_tightness": "loose",
+      "postflop_aggression": 0.2,
+      "value_bet_threshold": "thin_value_ok"
+    },
+    "blinds": {
+      "range_tightness": "position_dependent",
+      "postflop_difficulty": 0.3,
+      "value_bet_threshold": "cautious"
+    }
+  },
+  "bet_fold_thresholds": {
+    "flop": {
+      "fold_to_raise_frequency": 0.65,
+      "minimum_equity_to_continue": 0.25,
+      "bluff_catcher_threshold": "second_pair_plus"
+    },
+    "turn": {
+      "fold_to_raise_frequency": 0.70,
+      "minimum_equity_to_continue": 0.30,
+      "bluff_catcher_threshold": "top_pair_weak_kicker"
+    },
+    "river": {
+      "fold_to_raise_frequency": 0.75,
+      "minimum_equity_to_continue": 0.35,
+      "bluff_catcher_threshold": "top_pair_good_kicker"
+    }
+  }
+}

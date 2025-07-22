@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokerPro Analytics - Advanced Strategy & Risk Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-crown"></i>
+                <h1>PokerPro Analytics</h1>
+                <span class="tagline">Advanced Strategy & Risk Management</span>
+            </div>
+            <nav class="main-nav">
+                <a href="#dashboard" class="nav-link active" data-section="dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    Dashboard
+                </a>
+                <a href="#hand-analyzer" class="nav-link" data-section="hand-analyzer">
+                    <i class="fas fa-cards"></i>
+                    Hand Analyzer
+                </a>
+                <a href="#gto-solver" class="nav-link" data-section="gto-solver">
+                    <i class="fas fa-brain"></i>
+                    GTO Solver
+                </a>
+                <a href="#bankroll" class="nav-link" data-section="bankroll">
+                    <i class="fas fa-wallet"></i>
+                    Bankroll
+                </a>
+                <a href="#tournament" class="nav-link" data-section="tournament">
+                    <i class="fas fa-trophy"></i>
+                    Tournament
+                </a>
+                <a href="#session-review" class="nav-link" data-section="session-review">
+                    <i class="fas fa-history"></i>
+                    Sessions
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="dashboard-section active">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-line"></i> Performance Dashboard</h2>
+                <button class="refresh-btn" onclick="refreshSimulation()">
+                    <i class="fas fa-sync-alt"></i>
+                    Refresh Data
+                </button>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="metrics-grid">
+                <div class="metric-card equity-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>Current Equity</h3>
+                        <div class="metric-value" id="current-equity">67.3%</div>
+                        <div class="metric-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span id="equity-confidence">±2.1%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card ev-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>Expected Value</h3>
+                        <div class="metric-value" id="expected-value">+2.4</div>
+                        <div class="metric-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>BB/100</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card risk-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>Total Profit</h3>
+                        <div class="metric-value" id="total-profit-dashboard">$0.00</div>
+                        <div class="metric-change neutral">
+                            <i class="fas fa-coins"></i>
+                            <span>All Sessions</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card action-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>Win Rate</h3>
+                        <div class="metric-value" id="win-rate-dashboard">0%</div>
+                        <div class="metric-change">
+                            <span id="sessions-count-dashboard">0</span>
+                            <span> sessions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="charts-container">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-pie-chart"></i> Hand Equity Distribution</h3>
+                        <div class="chart-controls">
+                            <button class="chart-btn active" data-chart="equity">Equity</button>
+                            <button class="chart-btn" data-chart="strength">Strength</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="equity-chart"></canvas>
+                    </div>
+                    <div class="chart-legend">
+                        <div class="legend-item win">
+                            <span class="legend-color"></span>
+                            <span>Win: <strong id="win-percentage">67.3%</strong></span>
+                        </div>
+                        <div class="legend-item tie">
+                            <span class="legend-color"></span>
+                            <span>Tie: <strong id="tie-percentage">2.1%</strong></span>
+                        </div>
+                        <div class="legend-item lose">
+                            <span class="legend-color"></span>
+                            <span>Lose: <strong id="lose-percentage">30.6%</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-chart-bar"></i> Action EV Comparison</h3>
+                        <div class="chart-info">
+                            <i class="fas fa-info-circle" title="Expected value in big blinds for each action"></i>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="action-comparison-chart"></canvas>
+                    </div>
+                    <div class="action-summary">
+                        <div class="action-item best">
+                            <strong>Best Action:</strong> <span id="best-action">Raise 2.5x</span>
+                        </div>
+                        <div class="action-item">
+                            <strong>Hourly Rate:</strong> <span id="hourly-rate-dashboard">$0.00/hr</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Analysis -->
+            <div class="recent-analysis">
+                <div class="analysis-header">
+                    <h3><i class="fas fa-clock"></i> Recent Analysis</h3>
+                    <a href="#session-review" class="view-all-link">View All Sessions</a>
+                </div>
+                <div class="analysis-list">
+                    <div class="analysis-item">
+                        <div class="analysis-hand">
+                            <span class="cards">A♠ K♥</span>
+                            <span class="position">BTN</span>
+                        </div>
+                        <div class="analysis-result">
+                            <span class="equity">74.2% equity</span>
+                            <span class="action recommended">Raise</span>
+                        </div>
+                        <div class="analysis-time">2 min ago</div>
+                    </div>
+                    <div class="analysis-item">
+                        <div class="analysis-hand">
+                            <span class="cards">Q♦ Q♣</span>
+                            <span class="position">CO</span>
+                        </div>
+                        <div class="analysis-result">
+                            <span class="equity">82.1% equity</span>
+                            <span class="action recommended">Raise</span>
+                        </div>
+                        <div class="analysis-time">5 min ago</div>
+                    </div>
+                    <div class="analysis-item">
+                        <div class="analysis-hand">
+                            <span class="cards">7♠ 2♦</span>
+                            <span class="position">UTG</span>
+                        </div>
+                        <div class="analysis-result">
+                            <span class="equity">31.4% equity</span>
+                            <span class="action fold">Fold</span>
+                        </div>
+                        <div class="analysis-time">8 min ago</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hand Analyzer Section -->
+        <section id="hand-analyzer" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-cards"></i> Hand Analyzer</h2>
+                <p>Analyze poker hands with advanced Monte Carlo simulations</p>
+            </div>
+
+            <div class="analyzer-container">
+                <div class="input-panel">
+                    <div class="form-group">
+                        <label for="hole-cards">Hole Cards</label>
+                        <div class="card-inputs">
+                            <input type="text" id="hole-card-1" class="card-input" placeholder="As" maxlength="2">
+                            <input type="text" id="hole-card-2" class="card-input" placeholder="Kh" maxlength="2">
+                        </div>
+                        <div class="input-help">Enter cards like: As, Kh, Qd, Jc, Ts</div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="position">Position</label>
+                            <select id="position" class="form-select">
+                                <option value="UTG">UTG (Under the Gun)</option>
+                                <option value="UTG+1">UTG+1</option>
+                                <option value="MP">MP (Middle Position)</option>
+                                <option value="MP+1">MP+1</option>
+                                <option value="CO">CO (Cutoff)</option>
+                                <option value="BTN" selected>BTN (Button)</option>
+                                <option value="SB">SB (Small Blind)</option>
+                                <option value="BB">BB (Big Blind)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="opponents">Opponents</label>
+                            <input type="number" id="opponents" class="form-input" min="1" max="9" value="5">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="game-type">Game Type</label>
+                            <select id="game-type" class="form-select">
+                                <option value="cash">Cash Game</option>
+                                <option value="tournament">Tournament</option>
+                                <option value="sit_and_go">Sit & Go</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="stack-size">Stack Size (BB)</label>
+                            <input type="number" id="stack-size" class="form-input" min="1" value="100">
+                        </div>
+                    </div>
+
+                    <button class="analyze-button" onclick="analyzeHand()">
+                        <i class="fas fa-calculator"></i>
+                        Analyze Hand
+                    </button>
+                </div>
+
+                <div class="results-panel" id="hand-results" style="display: none;">
+                    <div class="results-header">
+                        <h3>Analysis Results</h3>
+                    </div>
+                    <div id="hand-analysis-content">
+                        <!-- Results will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GTO Solver Section -->
+        <section id="gto-solver" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-brain"></i> GTO Solver</h2>
+                <p>Game Theory Optimal strategy analysis</p>
+            </div>
+            
+            <div class="analyzer-container">
+                <div class="input-panel">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gto-scenario">Scenario Type</label>
+                            <select id="gto-scenario" class="form-select">
+                                <option value="preflop" selected>Preflop</option>
+                                <option value="postflop">Postflop</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="gto-position">Position</label>
+                            <select id="gto-position" class="form-select">
+                                <option value="early_position">Early Position</option>
+                                <option value="middle_position">Middle Position</option>
+                                <option value="late_position">Late Position</option>
+                                <option value="button" selected>Button</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="board-texture">Board Texture</label>
+                            <select id="board-texture" class="form-select">
+                                <option value="dry" selected>Dry</option>
+                                <option value="wet">Wet</option>
+                                <option value="paired">Paired</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pot-size">Pot Size ($)</label>
+                            <input type="number" id="pot-size" class="form-input" value="100" min="1">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gto-stack-size">Stack Size ($)</label>
+                        <input type="number" id="gto-stack-size" class="form-input" value="10000" min="1">
+                    </div>
+
+                    <button class="analyze-button" onclick="solveGTO()">
+                        <i class="fas fa-calculator"></i>
+                        Solve GTO Strategy
+                    </button>
+                </div>
+
+                <div class="results-panel" id="gto-results" style="display: none;">
+                    <div class="results-header">
+                        <h3>GTO Analysis Results</h3>
+                    </div>
+                    <div id="gto-analysis-content">
+                        <!-- Results will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bankroll Section -->
+        <section id="bankroll" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-wallet"></i> Bankroll Management</h2>
+                <p>Risk analysis and bankroll optimization</p>
+            </div>
+            
+            <div class="analyzer-container">
+                <div class="input-panel">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bankrollAmount">Current Bankroll ($)</label>
+                            <input type="number" id="bankrollAmount" class="form-input" value="10000" min="1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="buyInAmount">Typical Buy-in ($)</label>
+                            <input type="number" id="buyInAmount" class="form-input" value="100" min="1" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="varianceLevel">Variance Level</label>
+                        <select id="varianceLevel" class="form-select" required>
+                            <option value="1.0">Low (Cash Games)</option>
+                            <option value="1.5" selected>Medium (Mix)</option>
+                            <option value="2.0">High (Tournaments)</option>
+                            <option value="3.0">Very High (SNGs)</option>
+                        </select>
+                    </div>
+
+                    <button class="analyze-button" onclick="analyzeBankroll()">
+                        <i class="fas fa-calculator"></i>
+                        Analyze Bankroll
+                    </button>
+                </div>
+
+                <div class="results-panel" id="bankroll-results" style="display: block;">
+                    <div class="results-header">
+                        <h3>Bankroll Analysis</h3>
+                    </div>
+                    <div id="bankrollResults" class="result-summary">
+                        <div class="result-item">
+                            <span class="result-label">Risk Level:</span>
+                            <span id="riskLevel" class="result-value">Click "Analyze Bankroll" to get results</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tournament Section -->
+        <section id="tournament" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-trophy"></i> Tournament Strategy</h2>
+                <p>ICM analysis and tournament-specific recommendations</p>
+            </div>
+            
+            <div class="analyzer-container">
+                <div class="input-panel">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tournament-stack">Stack Size</label>
+                            <input type="number" id="tournament-stack" class="form-input" value="20000" min="1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="blind-level">Blind Level</label>
+                            <select id="blind-level" class="form-select">
+                                <option value="1">Level 1 (25/50)</option>
+                                <option value="2">Level 2 (50/100)</option>
+                                <option value="3" selected>Level 3 (75/150)</option>
+                                <option value="4">Level 4 (100/200)</option>
+                                <option value="5">Level 5 (150/300)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="players-left">Players Left</label>
+                            <input type="number" id="players-left" class="form-input" value="45" min="1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="total-players">Total Players</label>
+                            <input type="number" id="total-players" class="form-input" value="100" min="1">
+                        </div>
+                    </div>
+
+                    <button class="analyze-button" onclick="analyzeTournament()">
+                        <i class="fas fa-calculator"></i>
+                        Analyze Tournament
+                    </button>
+                </div>
+
+                <div class="results-panel" id="tournament-results" style="display: none;">
+                    <div class="results-header">
+                        <h3>Tournament Analysis Results</h3>
+                    </div>
+                    <div id="tournament-analysis-content">
+                        <!-- Results will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Session Review Section -->
+        <section id="session-review" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-history"></i> Session Review</h2>
+                <p>Performance tracking and leak analysis</p>
+            </div>
+            
+            <div class="analyzer-container">
+                <div class="input-panel">
+                    <h3>Add New Session</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="session-date">Date</label>
+                            <input type="date" id="session-date" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="session-duration">Duration (hours)</label>
+                            <input type="number" id="session-duration" class="form-input" step="0.5" min="0.5" value="4">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="session-profit">Profit/Loss ($)</label>
+                            <input type="number" id="session-profit" class="form-input" step="0.01" value="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="session-game-type">Game Type</label>
+                            <select id="session-game-type" class="form-select">
+                                <option value="NL25">NL25</option>
+                                <option value="NL50">NL50</option>
+                                <option value="NL100" selected>NL100</option>
+                                <option value="NL200">NL200</option>
+                                <option value="Tournament">Tournament</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button class="analyze-button" onclick="addSession()">
+                        <i class="fas fa-plus"></i>
+                        Add Session
+                    </button>
+                </div>
+
+                <div class="results-panel">
+                    <div class="results-header">
+                        <h3>Session History</h3>
+                    </div>
+                    <div id="session-table-container">
+                        <table class="sessions-table" id="sessions-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Duration</th>
+                                    <th>Profit/Loss</th>
+                                    <th>Game Type</th>
+                                    <th>Hourly Rate</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sessions-table-body">
+                                <tr>
+                                    <td colspan="5" style="text-align: center; color: #888;">No sessions recorded yet. Add your first session above!</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="spinner">
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+            </div>
+            <p id="loading-message">Analyzing hand equity...</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notification-container" class="notification-container"></div>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+    <!-- Additional CSS for Enhanced Features -->
+    <style>
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        
+        .loading-overlay.active {
+            display: flex;
+        }
+        
+        .loading-content {
+            text-align: center;
+            color: white;
+        }
+        
+        .spinner {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+        }
+        
+        .spinner-ring {
+            position: absolute;
+            border: 3px solid transparent;
+            border-top: 3px solid #4f46e5;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        .spinner-ring:nth-child(1) {
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+        }
+        
+        .spinner-ring:nth-child(2) {
+            width: 45px;
+            height: 45px;
+            top: 7.5px;
+            left: 7.5px;
+            animation-delay: -0.3s;
+        }
+        
+        .spinner-ring:nth-child(3) {
+            width: 30px;
+            height: 30px;
+            top: 15px;
+            left: 15px;
+            animation-delay: -0.6s;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4f46e5, #06b6d4);
+            width: 0%;
+            animation: progressFill 2s ease-in-out infinite;
+        }
+        
+        @keyframes progressFill {
+            0% { width: 0%; }
+            50% { width: 100%; }
+            100% { width: 0%; }
+        }
+        
+        .notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+        }
+        
+        .sessions-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .sessions-table th,
+        .sessions-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .sessions-table th {
+            background: rgba(255, 255, 255, 0.1);
+            color: #4ade80;
+            font-weight: 600;
+        }
+        
+        .sessions-table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .analyze-button {
+            background: linear-gradient(45deg, #4f46e5, #06b6d4);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .analyze-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+        }
+        
+        .analyze-button:active {
+            transform: translateY(0);
+        }
+        
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #e0e6ed;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .card-input {
+            width: 80px;
+            padding: 12px 10px;
+            margin: 0 5px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #e0e6ed;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        
+        .card-input:focus {
+            outline: none;
+            border-color: #4ade80;
+            box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.2);
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid #4f46e5;
+            transition: all 0.3s ease;
+        }
+        
+        .result-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(5px);
+        }
+        
+        .result-label {
+            color: #94a3b8;
+            font-weight: 500;
+        }
+        
+        .result-value {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+    </style>
+</body>
+</html>
